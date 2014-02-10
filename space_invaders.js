@@ -459,7 +459,7 @@ function handler2(event){
 		right_pressed = false;
 	}
 
-	if (key == 32 && alive && start_game){ // space
+	if (key == 32 && invader_count != 0 && alive && start_game){ // space
 		var bullet = new Bullet();
 		big_list.push(bullet);
 	}	
