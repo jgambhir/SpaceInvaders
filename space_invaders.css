@@ -1,0 +1,24 @@
+@font-face{
+	font-family: pixelfont;
+	src: url('slkscr.ttf') format('truetype');
+}
+
+body {
+	background-color: black;
+}
+
+canvas {
+	border: 2px solid green;
+}
+
+#container {
+	width: 700px;
+	height: 500px;
+	margin: 0px auto;
+}
+
+#instructions {
+	text-align:center;
+	color:white;
+	font-family: pixelfont;
+}
