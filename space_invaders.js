@@ -78,6 +78,11 @@ function mainloop(){
 		level++;
 		direction = 1;
 		big_list.push(new LevelScreen());
+		for (x = big_list.length - 1; x >= 0; x--) {
+			object_name = big_list[x].name;
+			if (object_name == "Bullet" || object_name == "InvaderBullet")
+				big_list.splice(x, 1);
+		}
 		pause = true;
 	}
 
