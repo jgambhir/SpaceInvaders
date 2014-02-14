@@ -197,7 +197,7 @@ function Bullet(){
 
 function InvaderBullet(x,y,type){
 	this.name = "InvaderBullet";
-	this.s = 5;
+	this.s = 7;
 	this.h = 10;
 	this.x = x;
 	this.y = y;
@@ -221,7 +221,7 @@ function Invader(x, y, below, type){
 	this.name = "Invader";
 	this.x = x;
 	this.y = y;
-	this.s = 1 + level; // initial movement speed
+	this.s = 2 * level; // initial movement speed
 	this.h=40;
 	this.type = type;
 	if (this.type == 1)
