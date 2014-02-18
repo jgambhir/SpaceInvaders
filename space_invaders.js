@@ -1,6 +1,8 @@
 window.onload = function(){
 	canvas = document.getElementById("canvas");
 	c = canvas.getContext("2d");
+	canvas.width = window.innerWidth * 0.8;
+	canvas.height = window.innerHeight * 0.8;
 	
 	start_game = false;
 	initialize_game();
@@ -58,15 +60,17 @@ function initialize_game(){
 function create_invaders(){
 	var init_x = 30;
 	var init_y = 30;
-	for (var i = 0; i < 8; i++) {
-		x = new Invader(init_x, init_y + 100, null, 1);
-		x2 = new Invader(init_x, init_y + 50, x, 2);
-		x3 = new Invader(init_x, init_y, x2, 3);
+	for (var i = 0; i < 9; i++) {
+		x = new Invader(init_x, init_y + 150, null, 1);
+		x2 = new Invader(init_x, init_y + 100, x, 1);
+		x3 = new Invader(init_x, init_y + 50, x2, 2);
+		x4 = new Invader(init_x, init_y, x3, 3);
 		big_list.push(x);
 		big_list.push(x2);
 		big_list.push(x3);
+		big_list.push(x4);
 		init_x += 50;
-		invader_count += 3;
+		invader_count += 4;
 	}
 }
 
@@ -178,7 +182,7 @@ function _remove_explosion(x){
 
 function Bullet(){
 	this.name="Bullet";
-	this.s = 7; // movement speed
+	this.s = 15; // movement speed
 	this.h = 15;
 	this.x = ship.x + this.h;
 	this.y = ship.y;
@@ -197,7 +201,7 @@ function Bullet(){
 
 function InvaderBullet(x,y,type){
 	this.name = "InvaderBullet";
-	this.s = 7;
+	this.s = 15;
 	this.h = 10;
 	this.x = x;
 	this.y = y;
