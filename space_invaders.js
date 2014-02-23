@@ -61,10 +61,10 @@ function create_invaders(){
 	var init_x = 30;
 	var init_y = 30;
 	for (var i = 0; i < 9; i++) {
-		x = new Invader(init_x, init_y + 150, null, 1);
-		x2 = new Invader(init_x, init_y + 100, x, 1);
-		x3 = new Invader(init_x, init_y + 50, x2, 2);
-		x4 = new Invader(init_x, init_y, x3, 3);
+		x = new Invader(init_x, init_y + 150, null, true, 1);
+		x2 = new Invader(init_x, init_y + 100, x, false, 1);
+		x3 = new Invader(init_x, init_y + 50, x2, false, 2);
+		x4 = new Invader(init_x, init_y, x3, false, 3);
 		big_list.push(x);
 		big_list.push(x2);
 		big_list.push(x3);
@@ -109,6 +109,10 @@ function mainloop(){
 						var i3_obj = big_list[i3];
 						if (i3_obj.name == "Invader" && i3_obj.below == object2){
 							i3_obj.below = null;
+							/* if the invader just killed was in the front, let the invader
+							 * behind it know that it is now in front.
+							 */
+							i3_obj.infront = object2.infront;
 						}
 					}
 
@@ -221,7 +225,7 @@ function InvaderBullet(x,y,type){
 	}
 }
 
-function Invader(x, y, below, type){
+function Invader(x, y, below, infront, type){
 	this.name = "Invader";
 	this.x = x;
 	this.y = y;
@@ -241,6 +245,8 @@ function Invader(x, y, below, type){
 	 * invaders and see who has their below set to you.
 	 */
 	this.below = below;
+	/* Whether or not this invader is in the front row (= should shoot). */
+	this.infront = infront;
 	this.score = 10 * this.type;
 
 	this.move_all_down = function(){ // move down and speed up
@@ -273,7 +279,7 @@ function Invader(x, y, below, type){
 		}
 
 		// Every now and then spit out a bullet
-		if (this.below == null && Math.random()< 0.005){
+		if (this.infront && Math.random()< 0.005){
 			var start_x = this.x+this.h/2;
 			var start_y = this.y+this.h;
 			big_list.push(new InvaderBullet(start_x, start_y, this.type));
