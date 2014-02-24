@@ -2,7 +2,7 @@ window.onload = function(){
 	canvas = document.getElementById("canvas");
 	c = canvas.getContext("2d");
 	canvas.width = window.innerWidth * 0.9;
-	canvas.height = window.innerHeight * 0.9;
+	canvas.height = window.innerHeight * 0.85;
 	
 	start_game = false;
 	initialize_game();
